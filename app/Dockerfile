@@ -14,5 +14,3 @@ RUN pip3 install -r requirements.txt --upgrade pip
 
 RUN mkdir -p /srv/uwsgi
 COPY uwsgi.ini /srv/uwsgi
-
-CMD ["uwsgi", "--ini", "/srv/uwsgi/uwsgi.ini", "--catch-exceptions"]
