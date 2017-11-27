@@ -2,9 +2,9 @@
 
 {% block body %}
 
-<h2>Log in to WMUC</h2>
+<h2>Register for WMUC</h2>
 <br>
-<form action="" method="post" name="login" class="form-horizontal">
+<form action="" method="post" name="register" class="form-horizontal">
   {{ form.hidden_tag() }}
   <div class="form-group {% if form.username.errors %} has-error {% endif %}">
     <label class="col-sm-2 control-label">{{form.username.label}}</label>
@@ -26,16 +26,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <div class="checkbox">
-        <label>
-          {{ form.remember_me }} {{form.remember_me.label}}
-        </label>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
+      <button type="submit" class="btn btn-default">Register</button>
     </div>
   </div>
 </form>

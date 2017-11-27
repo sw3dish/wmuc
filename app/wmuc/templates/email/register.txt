@@ -1,0 +1,11 @@
+Dear {{ user.name }},
+
+Welcome to WMUC!
+
+To register for an account please click on the following link:
+
+{{ url_for('register', token=token, _external=True) }}
+
+Sincerely,
+
+The WMUC IT Director

@@ -2,8 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>WMUC-College Park</title>
+    <title>WMUC Radio - College Park</title>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/font-awesome/css/font-awesome.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     {% block head %}{% endblock %}
   </head>
   <body>
@@ -17,7 +19,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">WMUC Radio</a>
+            <a class="navbar-brand" href="{{ url_for('home') }}">WMUC Radio</a>
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -45,19 +47,26 @@
               </li>
             </ul>
             <ul class= "nav navbar-nav navbar-right">
-              <!-- <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+              {% if current_user.is_authenticated %}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ current_user.name}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Profile</a></li>
                   <li><a href="#">Playlists</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#">Logs</a></li>
                   <li><a href="#">Registry</a></li>
+                  {% if current_user.is_administrator %}
                   <li role="separator" class="divider"></li>
-		              <li><a href="#">Sign Out</a></li>
+                  <li><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></li>
+                  {% endif %}
+                  <li role="separator" class="divider"></li>
+		              <li><a href="{{ url_for('logout') }}">Sign Out</a></li>
                 </ul>
-              </li> -->
-              <li><a href="/login">Sign in</a></li>
+              </li>
+              {% else %}
+              <li><a href="{{ url_for('login') }}">Sign in</a></li>
+              {% endif %}
             </ul>
           <div>
         </div>
@@ -72,9 +81,10 @@
             <li>{{ message }} </li>
           {% endfor %}
           </ul>
+        </div>
         {% endif %}
       {% endwith %}
-      </div>
+
       <div class="row">
         <div class="col-md-2">
 

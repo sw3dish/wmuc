@@ -1,0 +1,7 @@
+<p>Dear {{ user.name }},</p>
+<p>Welcome to <b>WMUC</b>!</p>
+<p>To register for an account please <a href="{{ url_for('register', token=token, _external=True) }}">click here</a>.</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{ url_for('register', token=token, _external=True) }}</p>
+<p>Sincerely,</p>
+<p>The WMUC IT Director</p>
