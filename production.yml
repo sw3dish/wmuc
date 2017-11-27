@@ -9,8 +9,11 @@ services:
     command: ["uwsgi", "--ini", "/srv/uwsgi/uwsgi.ini", "--catch-exceptions"]
   db:
     build: db/
+    env_file: db/db.env
     volumes:
       - /var/lib/postgres/data:/var/lib/postgres/data
+    ports:
+      - "5432:5432"
   web:
     build: ./web
     volumes:
