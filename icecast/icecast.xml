@@ -1,0 +1,78 @@
+<icecast>
+    <limits>
+        <clients>800</clients>
+        <sources>10</sources>
+        <threadpool>5</threadpool>
+        <queue-size>102400</queue-size>
+        <client-timeout>30</client-timeout>
+        <header-timeout>15</header-timeout>
+        <source-timeout>10</source-timeout>
+        <!-- If enabled, this will provide a burst of data when a client
+             first connects, thereby significantly reducing the startup
+             time for listeners that do substantial buffering. However,
+             it also significantly increases latency between the source
+             client and listening client.  For low-latency setups, you
+             might want to disable this. -->
+        <burst-on-connect>1</burst-on-connect>
+        <!-- same as burst-on-connect, but this allows for being more
+             specific on how much to burst. Most people won't need to
+             change from the default 64k. Applies to all mountpoints  -->
+        <burst-size>65535</burst-size>
+    </limits>
+
+    <authentication>
+        <!-- Sources log in with username 'source' -->
+        <source-password>drattrin</source-password>
+        <!-- Relays log in username 'relay' -->
+        <relay-password>drattrin</relay-password>
+
+        <!-- Admin logs in with the username given below -->
+        <admin-user>admin</admin-user>
+        <admin-password>ervicide</admin-password>
+    </authentication>
+
+    <fileserve>1</fileserve>
+
+    <listen-socket>
+        <port>8024</port>
+        <!-- <bind-address>0.0.0.0</bind-address> -->
+    </listen-socket>
+    <paths>
+		<!-- basedir is only used if chroot is enabled -->
+        <basedir>/usr/share/icecast2</basedir>
+
+        <!-- Note that if <chroot> is turned on below, these paths must both
+             be relative to the new root, not the original root -->
+        <logdir>/var/log/icecast2</logdir>
+        <webroot>/usr/share/icecast2/web</webroot>
+        <adminroot>/usr/share/icecast2/admin</adminroot>
+        <!-- <pidfile>/usr/share/icecast/icecast.pid</pidfile> -->
+
+        <!-- Aliases: treat requests for 'source' path as being for 'dest' path
+             May be made specific to a port or bound address using the "port"
+             and "bind-address" attributes.
+          -->
+        <!--
+        <alias source="/foo" dest="/bar"/>
+          -->
+        <!-- Aliases: can also be used for simple redirections as well,
+             this example will redirect all requests for http://server:port/ to
+             the status page
+          -->
+        <alias source="/" dest="/status.xsl"/>
+    </paths>
+
+    <logging>
+        <accesslog>access.log</accesslog>
+        <errorlog>error.log</errorlog>
+      	<loglevel>4</loglevel> <!-- 4 Debug, 3 Info, 2 Warn, 1 Error -->
+    </logging>
+
+    <security>
+        <chroot>0</chroot>
+        <changeowner>
+            <user>icecast2</user>
+            <group>icecast</group>
+        </changeowner>
+    </security>
+</icecast>

@@ -22,3 +22,7 @@ services:
       - /var/lib/postgres/data/wmuc:/var/lib/postgres/data
     ports:
       - "5432:5432"
+  icecast:
+    build: icecast/
+    ports:
+      - "8024:8024"
